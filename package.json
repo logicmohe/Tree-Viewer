@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tree-viewer.helloWorld"
+		"onCommand:tree-viewer.helloWorld",
+        "onLanugage:javascript"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -18,7 +19,11 @@
 			{
 				"command": "tree-viewer.helloWorld",
 				"title": "Hello World"
-			}
+			},
+            {
+                "command": "extension.addConsoleLog",
+                "title": "Add Console Log"
+            }
 		]
 	},
 	"scripts": {

@@ -1,26 +1,30 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import { commands, ExtensionContext, languages } from "vscode";
+import MyCodeLensProvider from "./myCodeLensProvider";
+import { addConsoleLog } from "./commands";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "tree-viewer" is now active!');
+export function activate(context: ExtensionContext) {
+  // Register the command
+  let commandDisposable = commands.registerCommand(
+    "extension.addConsoleLog",
+    addConsoleLog
+  );
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('tree-viewer.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Tree-Viewer!');
-	});
+  // Get a document selector for the CodeLens provider
+  // This one is any file that has the language of javascript
+  let docSelector = {
+    language: "javascript",
+    scheme: "file"
+  };
 
-	context.subscriptions.push(disposable);
+  // Register our CodeLens provider
+  let codeLensProviderDisposable = languages.registerCodeLensProvider(
+    docSelector,
+    new MyCodeLensProvider()
+  );
+
+  // Push the command and CodeLens provider to the context so it can be disposed of later
+  context.subscriptions.push(commandDisposable);
+  context.subscriptions.push(codeLensProviderDisposable);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
