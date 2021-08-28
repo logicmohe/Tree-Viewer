@@ -15,8 +15,8 @@ import {
   
       // Define what command we want to trigger when activating the CodeLens
       let c: Command = {
-        command: "extension.addConsoleLog",
-        title: "Insert console.log"
+        command: "tree-viewer.addConsoleLog",
+        title: "Insert console.log to target line"
       };
   
       let codeLens = new CodeLens(topOfDocument, c);

@@ -2,7 +2,7 @@ import { Range, window, SnippetString } from "vscode";
 
 async function addConsoleLog() {
   let lineNumStr = await window.showInputBox({
-    prompt: "Line Number"
+    prompt: "Insert Line Number to display log"
   });
 
   let lineNum = +lineNumStr;

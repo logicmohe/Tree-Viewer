@@ -21,7 +21,7 @@
 				"title": "Hello World"
 			},
             {
-                "command": "extension.addConsoleLog",
+                "command": "tree-viewer.addConsoleLog",
                 "title": "Add Console Log"
             }
 		]
