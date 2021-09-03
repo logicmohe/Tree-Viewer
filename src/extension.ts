@@ -32,7 +32,13 @@ export function activate(context: ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('tree-viewer.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Tree-Viewer!');
+        const activeEditor = vscode.window.activeTextEditor;
+        if(activeEditor) {
+            activeEditor.selection.active.line;
+        }
+        const {text} = activeEditor.document.lineAt(activeEditor.selection.active.line);
+        console.log(text);
+		vscode.window.showInformationMessage('Hello World from Tree-Viewer!' + text);
 	});
 
     // Push the command and CodeLens provider to the context so it can be disposed of later

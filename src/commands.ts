@@ -7,7 +7,7 @@ async function addConsoleLog() {
 
   let lineNum = +lineNumStr;
 
-  let insertionLocation = new Range(lineNum - 1, 0, lineNum - 1, 0);
+  let insertionLocation = new Range(lineNum - 1, 0, lineNum + 1, 0);
   let snippet = new SnippetString("console.log($1);\n");
 
   window.activeTextEditor.insertSnippet(snippet, insertionLocation);

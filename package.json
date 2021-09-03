@@ -10,6 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
+        "*",
 		"onCommand:tree-viewer.helloWorld",
         "onLanugage:javascript"
 	],
